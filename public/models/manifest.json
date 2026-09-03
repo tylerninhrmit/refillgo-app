@@ -1,0 +1,22 @@
+{
+  "file": "/models/aquasense-640.onnx",
+  "name": "aquasense (640px, 5 classes)",
+  "classes": [
+    "aluminum_soda_cans",
+    "glass_beverage_bottles",
+    "paper_cups",
+    "plastic_soda_bottles",
+    "plastic_water_bottles"
+  ],
+  "imgsz": 640,
+  "inputName": "images",
+  "outputName": "output0",
+  "layout": "yolo-raw",
+  "roi": {
+    "cx": 0.5,
+    "cy": 0.5,
+    "size": 0.85
+  },
+  "sha256": "92edf26331b86567",
+  "source": "hf:ninditya/aquasense-waste-detection-model/best.pt"
+}

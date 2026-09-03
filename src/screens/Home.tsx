@@ -80,7 +80,7 @@ export function Home() {
       </div>
 
       {/* Balance card */}
-      <div className="-mt-10 px-4">
+      <div className="relative z-10 -mt-10 px-4">
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="card p-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1.5 text-[12.5px] font-semibold text-ink-3">

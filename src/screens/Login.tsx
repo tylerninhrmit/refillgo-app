@@ -56,7 +56,7 @@ export function Login() {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.08 }}
-        className="card -mt-8 mx-4 space-y-4 p-5"
+        className="card relative z-10 -mt-8 mx-4 space-y-4 p-5"
       >
         <div>
           <label className="text-[12px] font-semibold text-ink-3">Your name</label>

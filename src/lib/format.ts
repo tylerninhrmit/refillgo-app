@@ -47,7 +47,7 @@ export function initials(name: string): string {
 
 export function firstName(name: string): string {
   const parts = name.trim().split(/\s+/);
-  return parts[parts.length - 1] ?? name;
+  return parts[0] ?? name;
 }
 
 export function normalizePhone(raw: string): string {

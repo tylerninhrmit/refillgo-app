@@ -24,7 +24,7 @@ export function TabBar() {
             type="button"
             onClick={() => nav('/scan')}
             aria-label="Scan station QR"
-            className="press absolute -top-7 flex h-16 w-16 items-center justify-center rounded-full brand-gradient text-white shadow-brand ring-4 ring-white"
+            className="press absolute bottom-[26px] flex h-16 w-16 items-center justify-center rounded-full brand-gradient text-white shadow-brand ring-4 ring-white"
           >
             <ScanLine size={28} strokeWidth={2.2} />
           </button>
