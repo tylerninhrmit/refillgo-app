@@ -119,7 +119,7 @@ export function KioskPage() {
   // ---- detector (camera → YOLO → state machine)
   const det = useDetector({
     videoRef: cam.videoRef,
-    enabled: started && !sim && cam.ready,
+    enabled: started && !sim,
     hasSession: !!active,
     onCredit: (m) => submit(m),
     onReject: () => submit('rejected'),

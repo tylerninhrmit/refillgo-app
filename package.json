@@ -7,8 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview --port 4173 --host",
-    "test": "vitest run",
-    "postinstall": "node scripts/copy-ort-wasm.mjs"
+    "test": "vitest run"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.58.0",

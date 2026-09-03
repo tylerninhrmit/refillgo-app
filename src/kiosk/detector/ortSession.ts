@@ -3,7 +3,8 @@ import type { Manifest } from './manifest';
 
 export type Backend = 'webgpu' | 'wasm';
 
-ort.env.wasm.wasmPaths = '/ort/';
+// The onnxruntime-web "bundle" build inlines its wasm loader and resolves the .wasm file via import.meta.url,
+// which Vite serves in dev and copies into dist/assets at build time — no wasmPaths override needed.
 
 export async function fetchWithProgress(url: string, onProgress: (loaded: number, total: number) => void): Promise<Uint8Array> {
   const res = await fetch(url);
@@ -32,7 +33,15 @@ export async function createSession(
   bytes: Uint8Array,
   preferred: Backend,
 ): Promise<{ session: ort.InferenceSession; backend: Backend }> {
-  const hasGpu = preferred === 'webgpu' && 'gpu' in navigator;
+  let hasGpu = false;
+  if (preferred === 'webgpu' && 'gpu' in navigator) {
+    try {
+      const adapter = await (navigator as Navigator & { gpu: { requestAdapter: () => Promise<unknown> } }).gpu.requestAdapter();
+      hasGpu = !!adapter;
+    } catch {
+      hasGpu = false;
+    }
+  }
   if (hasGpu) {
     try {
       ort.env.wasm.proxy = false;
