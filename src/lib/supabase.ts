@@ -1,13 +1,17 @@
 import { createClient } from '@supabase/supabase-js';
 
-const url = import.meta.env.VITE_SUPABASE_URL as string | undefined;
-const key = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
+// The publishable (anon) key is safe to ship in the client: row-level security and SECURITY DEFINER RPCs
+// are what protect the data. Defaults keep the app working even when the host has no env vars configured.
+const DEFAULT_URL = 'https://bdbjgoqtilpfouqjegph.supabase.co';
+const DEFAULT_KEY = 'sb_publishable_g8MQyeA6GPiqUd5VxlozkA_0bnltEi9';
 
-if (!url || !key) {
-  throw new Error(
-    'Missing VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY. Copy .env.example to .env.local (or set them in Vercel).',
-  );
-}
+const url = (import.meta.env.VITE_SUPABASE_URL as string | undefined)?.trim() || DEFAULT_URL;
+const key = (import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined)?.trim() || DEFAULT_KEY;
+
+export const CONFIG_ERROR: string | null =
+  !/^https:\/\/[a-z0-9-]+\.supabase\.co$/.test(url) || key.length < 20
+    ? 'Supabase configuration is invalid. Check VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY.'
+    : null;
 
 export const supabase = createClient(url, key, {
   auth: { persistSession: false, autoRefreshToken: false },
