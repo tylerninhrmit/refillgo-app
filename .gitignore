@@ -16,3 +16,5 @@ ml/runs/
 node_modules
 playwright-report/
 test-results/
+.vercel
+.env*

@@ -3,6 +3,7 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { RequireUser } from './RequireUser';
 import { TabLayout } from './TabLayout';
 import { Login } from '../screens/Login';
+import { Landing } from '../screens/Landing';
 import { Home } from '../screens/Home';
 import { Scan } from '../screens/Scan';
 import { SessionScreen } from '../screens/Session';
@@ -16,6 +17,7 @@ const KioskPage = lazy(() => import('../kiosk/KioskPage').then((m) => ({ default
 
 export const router = createBrowserRouter([
   { path: '/login', element: <Login /> },
+  { path: '/welcome', element: <Landing /> },
   {
     path: '/kiosk/:machineId',
     element: (
